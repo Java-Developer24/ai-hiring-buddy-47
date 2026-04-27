@@ -22,27 +22,26 @@ const LoginCard = () => {
   };
 
   return (
-    <div className="w-full max-w-[380px] bg-login-panel rounded-2xl border border-charcoal/10 p-8 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] animate-in fade-in zoom-in duration-300">
-    
-      <div className="space-y-1 text-center mb-6">
-        <h1 className="font-display font-bold text-xl text-white">Sign in to your account</h1>
-        <p className="text-[13px] text-white/60">Enter credentials to access your portal</p>
+    <div className="w-full max-w-[400px] bg-white rounded-3xl border border-charcoal/10 p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in duration-300">
+      <div className="space-y-1.5 text-center mb-7">
+        <h1 className="font-display font-bold text-2xl text-charcoal">Welcome back</h1>
+        <p className="text-[13px] text-charcoal-muted">Sign in to your HireIQ workspace</p>
       </div>
 
       <form className="space-y-4" onSubmit={handleLogin}>
         <div className="space-y-1.5">
-          <label className="text-[11px] font-bold text-white uppercase tracking-wider">Work email</label>
+          <label className="text-[11px] font-bold text-charcoal uppercase tracking-wider">Work email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            className={`w-full h-10 px-3 rounded-lg bg-login-bg/30 border text-sm text-white placeholder:text-white/60/40 focus:outline-none focus:ring-2 focus:ring-coral/20 transition ${error ? "border-destructive" : "border-charcoal/10"}`}
+            className={`w-full h-11 px-3.5 rounded-xl bg-cream/40 border text-sm text-charcoal placeholder:text-charcoal-muted/50 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral/40 focus:bg-white transition ${error ? "border-destructive" : "border-charcoal/10"}`}
           />
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
-            <label className="text-[11px] font-bold text-white uppercase tracking-wider">Password</label>
+            <label className="text-[11px] font-bold text-charcoal uppercase tracking-wider">Password</label>
             <button type="button" className="text-[10px] text-coral font-bold hover:underline">Forgot?</button>
           </div>
           <div className="relative">
@@ -50,9 +49,10 @@ const LoginCard = () => {
               type={showPwd ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full h-10 pl-3 pr-10 rounded-lg bg-login-bg/30 border border-charcoal/10 text-sm text-white placeholder:text-white/60/40 focus:outline-none focus:ring-2 focus:ring-coral/20 transition`}
+              placeholder="••••••••"
+              className={`w-full h-11 pl-3.5 pr-10 rounded-xl bg-cream/40 border border-charcoal/10 text-sm text-charcoal placeholder:text-charcoal-muted/50 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral/40 focus:bg-white transition`}
             />
-            <button type="button" onClick={() => setShowPwd(!showPwd)} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition">
+            <button type="button" onClick={() => setShowPwd(!showPwd)} className="absolute right-3 top-1/2 -translate-y-1/2 text-charcoal-muted hover:text-charcoal transition">
               {showPwd ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
           </div>
@@ -66,34 +66,33 @@ const LoginCard = () => {
 
         <button
           type="submit"
-          className="w-full h-10 rounded-lg bg-coral text-cream font-bold text-sm hover:bg-charcoal transition-all shadow-sm active:scale-[0.98]"
+          className="w-full h-11 rounded-xl bg-coral text-white font-bold text-sm hover:bg-coral-dark transition-all shadow-sm active:scale-[0.98]"
         >
           Sign in
         </button>
       </form>
 
-      <div className="mt-6 p-3 rounded-xl bg-coral/5 border border-coral/10">
-        <p className="text-[10px] font-bold text-coral uppercase tracking-widest text-center mb-2">Demo Access</p>
-        <div className="grid grid-cols-1 gap-2 text-[11px]">
-          <div className="flex justify-between">
-            <span className="text-white/60">Recruiter:</span>
-            <code className="bg-login-panel px-1 rounded text-white">recruiter@hireiq.com</code>
+      <div className="mt-6 p-3.5 rounded-2xl bg-amber-soft/60 border border-amber/20">
+        <p className="text-[10px] font-bold text-charcoal uppercase tracking-widest text-center mb-2.5">Demo Access</p>
+        <div className="grid grid-cols-1 gap-1.5 text-[11px]">
+          <div className="flex justify-between items-center">
+            <span className="text-charcoal-muted">Recruiter:</span>
+            <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">recruiter@hireiq.com</code>
           </div>
-          <div className="flex justify-between">
-            <span className="text-white/60">Candidate:</span>
-            <code className="bg-login-panel px-1 rounded text-white">candidate@hireiq.com</code>
+          <div className="flex justify-between items-center">
+            <span className="text-charcoal-muted">Candidate:</span>
+            <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">candidate@hireiq.com</code>
           </div>
-          <div className="flex justify-between pt-1 border-t border-coral/10">
-            <span className="text-white/60">Password:</span>
-            <code className="bg-login-panel px-1 rounded text-white">hireiq123</code>
+          <div className="flex justify-between items-center pt-1.5 mt-1 border-t border-amber/20">
+            <span className="text-charcoal-muted">Password:</span>
+            <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">hireiq123</code>
           </div>
         </div>
       </div>
 
-
-      <div className="mt-6 text-center text-xs text-white/60">
+      <div className="mt-6 text-center text-xs text-charcoal-muted">
         New to HireIQ?{" "}
-        <Link to="/onboarding" className="text-coral font-semibold hover:underline">Create organisation account</Link>
+        <Link to="/onboarding" className="text-coral font-bold hover:underline">Create organisation account</Link>
       </div>
     </div>
   );
@@ -101,16 +100,13 @@ const LoginCard = () => {
 
 const Login = () => {
   return (
-    <div className="min-h-screen bg-login-bg  flex flex-col items-center justify-center p-6">
-      <Link to="/" className="mb-8 hover:scale-105 transition-transform"><HireIqLogo variant="light" /></Link>
-      <LoginCard />
-      {/* <div className="mt-8 text-center space-y-4">
-        <p className="text-[11px] font-bold text-white/60 uppercase tracking-widest">Trusted by 500+ teams</p>
-        <div className="text-xs text-white/60">
-          New to HireIQ?{" "}
-          <Link to="/onboarding" className="text-coral font-bold hover:underline">Create workspace</Link>
-        </div>
-      </div> */}
+    <div className="min-h-screen bg-cream flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <div className="absolute -top-40 -right-40 h-[400px] w-[400px] coral-glow opacity-40 pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] amber-glow opacity-30 pointer-events-none" />
+      <Link to="/" className="mb-8 hover:scale-105 transition-transform relative z-10"><HireIqLogo /></Link>
+      <div className="relative z-10">
+        <LoginCard />
+      </div>
     </div>
   );
 };

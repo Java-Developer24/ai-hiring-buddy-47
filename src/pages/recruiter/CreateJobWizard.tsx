@@ -84,7 +84,7 @@ const CreateJobWizard = () => {
   return (
     <RecruiterLayout title={step === 1 ? "Create new job" : step === 2 ? "Upload JD" : "Configure AI"} showNewJobButton={false}>
       <div className="p-6 flex flex-col items-center bg-cream/40 min-h-[calc(100vh-3rem)]">
-        <div className="w-full max-w-[720px] space-y-4">
+        <div className={`w-full ${step === 3 ? "max-w-[1180px]" : "max-w-[720px]"} space-y-4`}>
           <div className="flex items-center gap-4">
             <button
               onClick={() => step === 1 ? navigate("/jobs") : handleBack()}
@@ -95,7 +95,7 @@ const CreateJobWizard = () => {
             <span className="text-xs font-bold text-charcoal-muted uppercase tracking-wider">Back to {step === 1 ? 'Jobs' : 'Previous step'}</span>
           </div>
 
-          <div className="bg-white border border-charcoal/10 rounded-[24px] shadow-sm overflow-hidden p-9 relative">
+          <div className="bg-white border border-charcoal/10 rounded-[24px] shadow-sm overflow-hidden p-7 md:p-9 relative">
             {/* <button className="absolute top-9 right-9 text-xs font-semibold text-charcoal-muted hover:text-coral underline transition">
               Save as draft
             </button> */}
@@ -426,8 +426,8 @@ const CreateJobWizard = () => {
                   <p className="text-sm text-charcoal-muted mt-1">Set once. The AI runs autonomously — you only review edge cases.</p>
                 </div>
 
-                <div className="grid gap-6 xl:grid-cols-3">
-                  <div className="space-y-6 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
+                <div className="grid gap-5 lg:grid-cols-3">
+                  <div className="space-y-5 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
                     <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Resume match weights</label>
                     {[
                       { label: "Skills match", value: 40 },
@@ -445,8 +445,10 @@ const CreateJobWizard = () => {
                         </div>
                       </div>
                     ))}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-coral/10 text-coral text-[11px] font-bold">
-                      Total: 100% <Check className="h-3 w-3" />
+                    <div className="pt-2">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-coral/10 text-coral text-[11px] font-bold">
+                        Total: 100% <Check className="h-3 w-3" />
+                      </div>
                     </div>
                   </div>
 
@@ -502,24 +504,24 @@ const CreateJobWizard = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-6 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
+                  <div className="space-y-5 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
                     <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Interview settings</label>
                     <div className="space-y-4">
-                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
+                      <div className="space-y-3 rounded-xl border border-charcoal/10 bg-white p-3.5">
                         <div className="flex justify-between text-[11px] font-bold text-charcoal">
                           <span>MCQ assessment questions</span>
                           <span>{mcqQuestions}</span>
                         </div>
                         <Slider value={[mcqQuestions]} onValueChange={(value) => setMcqQuestions(value[0])} min={5} max={20} step={1} />
                       </div>
-                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
+                      <div className="space-y-3 rounded-xl border border-charcoal/10 bg-white p-3.5">
                         <div className="flex justify-between text-[11px] font-bold text-charcoal">
                           <span>Video interview questions</span>
                           <span>{videoQuestions}</span>
                         </div>
                         <Slider value={[videoQuestions]} onValueChange={(value) => setVideoQuestions(value[0])} min={3} max={12} step={1} />
                       </div>
-                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
+                      <div className="space-y-3 rounded-xl border border-charcoal/10 bg-white p-3.5">
                         <div className="flex justify-between text-[11px] font-bold text-charcoal">
                           <span>Machine coding problems</span>
                           <span>{codingQuestions}</span>
