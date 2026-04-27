@@ -133,7 +133,7 @@ const VideoInterview = () => {
                 </p>
              </div>
 
-             <div className="aspect-[16/7.8] w-full bg-black rounded-[28px] border border-white/10 relative overflow-hidden shadow-2xl group">
+             <div className="aspect-[18/7.8] w-full bg-black rounded-[28px] border border-white/10 relative overflow-hidden shadow-2xl group">
                 <video
                   ref={videoRef}
                   autoPlay
