@@ -109,143 +109,141 @@ export default function CandidateJobs() {
           </div>
         </section>
 
-        <section className="grid gap-6 xl:grid-cols-[1.45fr_0.75fr]">
-          <div className="space-y-5">
-            <div className="flex flex-col gap-3 rounded-[28px] border border-charcoal/10 bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal-muted">Open opportunities</p>
-                <h3 className="mt-2 text-2xl font-display font-bold text-charcoal">Choose your next move</h3>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-charcoal-muted">
-                  Each role includes its team, level, work mode, and a snapshot of what you would own.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-cream px-4 py-3 text-right">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Currently live</p>
-                <p className="mt-1 text-2xl font-display font-bold text-charcoal">{filteredJobs.length} roles</p>
-              </div>
+        <section className="space-y-6">
+          <div className="flex flex-col gap-3 rounded-[28px] border border-charcoal/10 bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal-muted">Open opportunities</p>
+              <h3 className="mt-2 text-2xl font-display font-bold text-charcoal">Choose your next move</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-charcoal-muted">
+                Each role includes its team, level, work mode, and a snapshot of what you would own.
+              </p>
             </div>
+            <div className="rounded-2xl bg-cream px-4 py-3 text-right">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Currently live</p>
+              <p className="mt-1 text-2xl font-display font-bold text-charcoal">{filteredJobs.length} roles</p>
+            </div>
+          </div>
 
-            <div className="grid gap-5">
-              {filteredJobs.length > 0 ? (
-                filteredJobs.map((job, index) => (
-                  <div
-                    key={job.id}
-                    className="group relative overflow-hidden rounded-[30px] border border-charcoal/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_45px_-30px_rgba(0,0,0,0.45)] md:p-7"
-                  >
-                    <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,hsl(var(--coral)),hsl(var(--amber)))] opacity-0 transition group-hover:opacity-100" />
+          <div className="grid gap-5">
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job, index) => (
+                <div
+                  key={job.id}
+                  className="group relative overflow-hidden rounded-[30px] border border-charcoal/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_45px_-30px_rgba(0,0,0,0.45)] md:p-7"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,hsl(var(--coral)),hsl(var(--amber)))] opacity-0 transition group-hover:opacity-100" />
 
-                    <div className="flex flex-col gap-6">
-                      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                        <div className="space-y-4">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="rounded-full bg-coral/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-coral">
-                              {index === 0 ? "Featured role" : "Now reviewing"}
-                            </span>
-                            <span className="rounded-full border border-charcoal/10 bg-cream px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
-                              {job.team}
-                            </span>
+                  <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="rounded-full bg-coral/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-coral">
+                            {index === 0 ? "Featured role" : "Now reviewing"}
+                          </span>
+                          <span className="rounded-full border border-charcoal/10 bg-cream px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                            {job.team}
+                          </span>
+                        </div>
+
+                        <div>
+                          <h3 className="text-2xl font-display font-bold text-charcoal">{job.title}</h3>
+                          <p className="mt-2 max-w-3xl text-sm leading-7 text-charcoal-muted">{job.summary}</p>
+                        </div>
+                      </div>
+
+                      <Link
+                        to={`/apply/${job.id}`}
+                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-coral px-5 text-sm font-bold text-white shadow-lg shadow-coral/20 transition hover:bg-coral-dark"
+                      >
+                        Apply now
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                      <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Location</p>
+                        <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
+                          <MapPin className="h-4 w-4 text-coral" />
+                          {job.location}
+                        </div>
+                      </div>
+
+                      <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Work mode</p>
+                        <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
+                          <Building2 className="h-4 w-4 text-coral" />
+                          {job.workMode}
+                        </div>
+                      </div>
+
+                      <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Role type</p>
+                        <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
+                          <Clock3 className="h-4 w-4 text-coral" />
+                          {job.employmentType}
+                        </div>
+                      </div>
+
+                      <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Compensation</p>
+                        <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
+                          <Wallet className="h-4 w-4 text-coral" />
+                          {job.salary}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+                      <div className="rounded-[24px] border border-charcoal/10 bg-charcoal/[0.03] p-5">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Career level</p>
+                        <div className="mt-3 flex items-center gap-3">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-charcoal text-white shadow-sm">
+                            <Briefcase className="h-5 w-5" />
                           </div>
-
                           <div>
-                            <h3 className="text-2xl font-display font-bold text-charcoal">{job.title}</h3>
-                            <p className="mt-2 max-w-3xl text-sm leading-7 text-charcoal-muted">{job.summary}</p>
-                          </div>
-                        </div>
-
-                        <Link
-                          to={`/apply/${job.id}`}
-                          className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-coral px-5 text-sm font-bold text-white shadow-lg shadow-coral/20 transition hover:bg-coral-dark"
-                        >
-                          Apply now
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </div>
-
-                      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                        <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Location</p>
-                          <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
-                            <MapPin className="h-4 w-4 text-coral" />
-                            {job.location}
-                          </div>
-                        </div>
-
-                        <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Work mode</p>
-                          <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
-                            <Building2 className="h-4 w-4 text-coral" />
-                            {job.workMode}
-                          </div>
-                        </div>
-
-                        <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Role type</p>
-                          <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
-                            <Clock3 className="h-4 w-4 text-coral" />
-                            {job.employmentType}
-                          </div>
-                        </div>
-
-                        <div className="rounded-2xl border border-charcoal/10 bg-cream/60 p-4">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Compensation</p>
-                          <div className="mt-2 flex items-center gap-2 text-sm font-bold text-charcoal">
-                            <Wallet className="h-4 w-4 text-coral" />
-                            {job.salary}
+                            <p className="text-base font-bold text-charcoal">{job.level}</p>
+                            <p className="text-xs text-charcoal-muted">Hiring for immediate pipeline needs</p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
-                        <div className="rounded-[24px] border border-charcoal/10 bg-charcoal/[0.03] p-5">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Career level</p>
-                          <div className="mt-3 flex items-center gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-charcoal text-white shadow-sm">
-                              <Briefcase className="h-5 w-5" />
+                      <div className="rounded-[24px] border border-charcoal/10 bg-white p-5">
+                        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                          <Zap className="h-3.5 w-3.5 text-amber" />
+                          What you’ll drive
+                        </p>
+                        <div className="mt-4 grid gap-3 md:grid-cols-3">
+                          {job.highlights.map((highlight) => (
+                            <div key={highlight} className="rounded-2xl bg-cream/70 p-4 text-sm leading-6 text-charcoal">
+                              {highlight}
                             </div>
-                            <div>
-                              <p className="text-base font-bold text-charcoal">{job.level}</p>
-                              <p className="text-xs text-charcoal-muted">Hiring for immediate pipeline needs</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="rounded-[24px] border border-charcoal/10 bg-white p-5">
-                          <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
-                            <Zap className="h-3.5 w-3.5 text-amber" />
-                            What you’ll drive
-                          </p>
-                          <div className="mt-4 grid gap-3 md:grid-cols-3">
-                            {job.highlights.map((highlight) => (
-                              <div key={highlight} className="rounded-2xl bg-cream/70 p-4 text-sm leading-6 text-charcoal">
-                                {highlight}
-                              </div>
-                            ))}
-                          </div>
+                          ))}
                         </div>
                       </div>
                     </div>
                   </div>
-                ))
-              ) : (
-                <div className="rounded-[30px] border border-dashed border-charcoal/15 bg-white p-10 text-center shadow-sm">
-                  <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal-muted">No matches</p>
-                  <h4 className="mt-3 text-2xl font-display font-bold text-charcoal">No roles match this filter yet</h4>
-                  <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-charcoal-muted">
-                    Try another filter to explore the rest of the openings currently available in the candidate portal.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setActiveFilter("All roles")}
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-charcoal px-5 text-sm font-bold text-white transition hover:bg-charcoal/90"
-                  >
-                    Reset filters
-                  </button>
                 </div>
-              )}
-            </div>
+              ))
+            ) : (
+              <div className="rounded-[30px] border border-dashed border-charcoal/15 bg-white p-10 text-center shadow-sm">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-charcoal-muted">No matches</p>
+                <h4 className="mt-3 text-2xl font-display font-bold text-charcoal">No roles match this filter yet</h4>
+                <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-charcoal-muted">
+                  Try another filter to explore the rest of the openings currently available in the candidate portal.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveFilter("All roles")}
+                  className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-charcoal px-5 text-sm font-bold text-white transition hover:bg-charcoal/90"
+                >
+                  Reset filters
+                </button>
+              </div>
+            )}
           </div>
 
-          <aside className="space-y-5">
+          <div className="grid gap-6">
             <div className="overflow-hidden rounded-[30px] border border-charcoal/10 bg-white shadow-sm">
               <div className="bg-[linear-gradient(135deg,hsl(var(--cream)),white)] p-6">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-coral">Role spotlight</p>
@@ -255,7 +253,7 @@ export default function CandidateJobs() {
                 </p>
               </div>
 
-              <div className="space-y-4 p-6">
+              <div className="grid gap-4 p-6 md:grid-cols-2 xl:grid-cols-4">
                 {[
                   ["Team", featuredJob.team],
                   ["Level", featuredJob.level],
@@ -267,7 +265,8 @@ export default function CandidateJobs() {
                     <p className="mt-2 text-sm font-bold text-charcoal">{value}</p>
                   </div>
                 ))}
-
+              </div>
+              <div className="px-6 pb-6">
                 <Link
                   to={`/apply/${featuredJob.id}`}
                   className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-charcoal px-5 text-sm font-bold text-white transition hover:bg-charcoal/90"
@@ -295,7 +294,7 @@ export default function CandidateJobs() {
                 ))}
               </div>
             </div>
-          </aside>
+          </div>
         </section>
       </div>
     </CandidateDashboardLayout>
