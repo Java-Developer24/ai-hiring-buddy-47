@@ -67,6 +67,7 @@ const stories = [
 export default function CandidateLanding() {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [activeStory, setActiveStory] = useState(0);
+  const sectionContainerClass = "mx-auto w-full max-w-[1240px] px-8 lg:px-12 xl:px-14";
 
   useEffect(() => {
     if (!carouselApi) return;
@@ -95,7 +96,7 @@ export default function CandidateLanding() {
     <div className="min-h-screen bg-cream text-charcoal">
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <div className={`${sectionContainerClass} flex h-16 items-center justify-between`}>
           <div className="flex items-center gap-8">
             <HireIqLogo />
             <nav className="hidden items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-charcoal-muted md:flex">
@@ -120,10 +121,10 @@ export default function CandidateLanding() {
           <div className="absolute -top-40 -right-40 h-[500px] w-[500px] coral-glow opacity-25 pointer-events-none" />
           <div className="absolute -bottom-20 -left-40 h-[400px] w-[400px] amber-glow opacity-20 pointer-events-none" />
 
-          <div className="relative mx-auto max-w-6xl px-6  pb-20">
+          <div className={`${sectionContainerClass} relative pb-20`}>
             {/* <div className="text-[10px] font-bold uppercase tracking-widest text-coral/80">Home / Careers</div> */}
 
-            <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] items-start">
+            <div className="mt-10 grid items-start gap-10 xl:grid-cols-[1.2fr_0.8fr]">
               {/* Left */}
               <div className="space-y-7">
                 {/* <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">
@@ -137,6 +138,7 @@ export default function CandidateLanding() {
 
                 <p className="max-w-xl text-base leading-7 text-charcoal-muted">
                   Build products that make hiring clearer, faster, and more human. At HireIQ, we bring together structured assessments, AI-assisted interviews, and candidate-first workflows so ambitious teams can hire with confidence.
+                  We are looking for people who care about thoughtful systems, strong product craft, and the kind of execution that improves the experience for every candidate and hiring team we serve.
                 </p>
 
                 <div className="flex flex-wrap gap-3">
@@ -203,7 +205,7 @@ export default function CandidateLanding() {
 
         {/* CULTURE */}
         <section id="culture" className="py-20 bg-white border-y border-charcoal/10">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className={sectionContainerClass}>
             <div className="overflow-hidden rounded-[32px] border border-charcoal/10 bg-cream shadow-sm">
               <img src={peopleImage} alt="Team members collaborating" className="h-[320px] w-full object-cover" />
               <div className="grid gap-6 px-8 py-10 md:grid-cols-3">
@@ -239,7 +241,7 @@ export default function CandidateLanding() {
 
         {/* RECOGNITION */}
         <section id="recognition" className="py-20 bg-cream">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className={sectionContainerClass}>
             <div className="text-center mb-10">
               <div className="inline-block text-[11px] font-bold text-coral uppercase tracking-[0.2em]">Awards</div>
               <h2 className="mt-2 text-4xl font-display font-bold text-charcoal">Featured recognition</h2>
@@ -310,7 +312,7 @@ export default function CandidateLanding() {
 
         {/* MEET PEOPLE */}
         <section id="people" className="py-20 bg-white border-y border-charcoal/10">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className={sectionContainerClass}>
             <div className="text-center mb-10 max-w-2xl mx-auto">
               <div className="inline-block text-[11px] font-bold text-coral uppercase tracking-[0.2em]">Stories</div>
               <h2 className="mt-2 text-4xl font-display font-bold text-charcoal">Meet our people</h2>
@@ -319,7 +321,7 @@ export default function CandidateLanding() {
               </p>
             </div>
 
-            <div className="mx-auto max-w-5xl rounded-[32px] border border-charcoal/10 bg-cream p-6 shadow-sm md:p-10">
+            <div className="mx-auto max-w-6xl rounded-[32px] border border-charcoal/10 bg-cream p-6 shadow-sm md:p-10">
               <Carousel setApi={setCarouselApi} opts={{ loop: true }} className="w-full">
                 <CarouselContent>
                   {stories.map((story) => (
@@ -382,7 +384,7 @@ export default function CandidateLanding() {
 
         {/* ROLES */}
         <section id="roles" className="py-20 bg-cream">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className={sectionContainerClass}>
             <div className="rounded-[32px] border border-charcoal/10 bg-white p-8 shadow-sm md:p-12">
               <div className="grid gap-10 lg:grid-cols-[1fr_1fr] items-start">
                 <div>
@@ -421,7 +423,7 @@ export default function CandidateLanding() {
         <section className="py-20 bg-charcoal text-white relative overflow-hidden">
           <div className="absolute inset-0 grid-bg opacity-10" />
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 h-[400px] w-[600px] coral-glow opacity-25 pointer-events-none" />
-          <div className="mx-auto max-w-3xl px-6 text-center relative">
+          <div className="relative mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">
               Ready to make <span className="italic text-coral">an impact?</span>
             </h2>
