@@ -41,7 +41,7 @@ const PracticeQuestion = () => {
   return (
     <CandidateLayout className="bg-cream">
       <div className="flex h-[calc(100vh-4rem)] flex-col overflow-hidden">
-        <div className="flex h-14 flex-none items-center justify-between border-b border-charcoal/5 bg-white px-5 md:px-8">
+        <div className="flex h-12 flex-none items-center justify-between border-b border-charcoal/5 bg-white px-4 md:px-6">
           <div className="flex items-center gap-3 text-xs font-bold text-charcoal-muted">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E5F9F1] text-[#00875A]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#00CC88]" /> Device check
@@ -56,30 +56,30 @@ const PracticeQuestion = () => {
           </div>
         </div>
 
-        <div className="flex flex-1 items-center justify-center overflow-hidden bg-cream p-4 md:p-6 relative">
+        <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-cream p-3">
           <div className="absolute top-10 left-10 h-64 w-64 coral-glow opacity-20 pointer-events-none" />
           <div className="absolute bottom-10 right-10 h-64 w-64 amber-glow opacity-20 pointer-events-none" />
-          <div className="relative flex h-full w-full max-w-[820px] flex-col overflow-hidden rounded-[32px] border border-charcoal/10 bg-white shadow-[0_20px_60px_-20px_rgba(0,0,0,0.15)]">
-            <div className="absolute inset-x-0 top-0 flex h-11 items-center justify-center gap-2 border-b border-amber/20 bg-amber-soft px-4 text-center z-10">
+          <div className="relative flex h-full max-h-[calc(100vh-6.25rem)] w-full max-w-[700px] flex-col overflow-hidden rounded-[28px] border border-charcoal/10 bg-white shadow-[0_20px_60px_-20px_rgba(0,0,0,0.15)]">
+            <div className="absolute inset-x-0 top-0 z-10 flex h-9 items-center justify-center gap-2 border-b border-amber/20 bg-amber-soft px-4 text-center">
               <span className="h-2 w-2 animate-pulse rounded-full bg-amber" />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-charcoal">Practice round · Not scored or submitted</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-charcoal">Practice round · Not scored or submitted</p>
             </div>
 
-            <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-16 text-center md:px-10 md:pb-8 md:pt-20">
-              <div className="space-y-4">
+            <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-12 text-center md:px-7 md:pb-5 md:pt-14">
+              <div className="space-y-2.5">
                 <span className="inline-block px-3 py-1 rounded-full bg-coral/10 text-coral text-[10px] font-bold uppercase tracking-widest">Practice question</span>
-                <h2 className="mx-auto max-w-xl text-2xl font-display font-bold leading-tight text-charcoal md:text-[2.2rem]">
+                <h4 className="mx-auto max-w-[34rem] text-lg font-display font-bold leading-tight text-charcoal ">
                   Tell us something you enjoy doing outside of work.
-                </h2>
+                </h4>
                 <button className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-cream px-3.5 py-1.5 text-[11px] font-bold text-charcoal-muted transition hover:bg-white hover:text-charcoal">
                   <Volume2 className="h-3.5 w-3.5" /> Replay question audio
                 </button>
               </div>
 
-              <div className="mt-4 flex min-h-0 flex-1 flex-col items-center justify-center">
+              <div className="mt-3 flex min-h-0 flex-1 flex-col items-center justify-center">
                 {state === "prep" && (
-                  <div className="animate-in fade-in flex flex-col items-center gap-6 duration-500">
-                    <div className="relative mx-auto flex h-36 w-36 items-center justify-center md:h-40 md:w-40">
+                  <div className="animate-in fade-in flex flex-col items-center gap-4 duration-500">
+                    <div className="relative mx-auto flex h-28 w-28 items-center justify-center md:h-32 md:w-32">
                       <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 144 144">
                         <circle
                           cx="72" cy="72" r="64"
@@ -100,19 +100,19 @@ const PracticeQuestion = () => {
                         />
                       </svg>
                       <div className="text-center">
-                        <span className="block text-5xl font-display font-bold text-charcoal">{countdown}</span>
+                        <span className="block text-3xl font-display font-bold text-charcoal">{countdown}</span>
                         <span className="text-[9px] font-bold uppercase tracking-widest text-charcoal-muted">seconds</span>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-soft border border-amber/20 px-4 py-2 text-charcoal">
-                        <Lightbulb className="h-4 w-4 text-amber" />
+                    <div className="space-y-2.5">
+                      <div className="inline-flex items-center gap-2.5 rounded-full border border-amber/20 bg-amber-soft px-4 py-2 text-charcoal">
+                        <Lightbulb className="h-3.5 w-3.5 text-amber" />
                         <p className="text-[11px] font-bold">Speak naturally. Nothing here is recorded or scored.</p>
                       </div>
                       <button
                         onClick={() => setState("recording")}
-                        className="block mx-auto px-5 py-2 rounded-full bg-coral text-white text-xs font-bold hover:bg-coral-dark transition shadow-sm"
+                        className="block mx-auto rounded-full bg-coral px-5 py-2 text-[11px] font-bold text-white transition hover:bg-coral-dark shadow-sm"
                       >
                         Start recording now →
                       </button>
@@ -121,8 +121,8 @@ const PracticeQuestion = () => {
                 )}
 
                 {state === "recording" && (
-                  <div className="animate-in zoom-in-95 flex w-full max-w-[640px] flex-col gap-5 duration-300">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-3xl border-2 border-coral/30 bg-charcoal shadow-2xl">
+                  <div className="animate-in zoom-in-95 flex w-full max-w-[500px] flex-col gap-3.5 duration-300">
+                    <div className="relative aspect-[16/8.6] w-full overflow-hidden rounded-[24px] border-2 border-coral/30 bg-charcoal shadow-2xl">
                       <video
                         ref={videoRef}
                         autoPlay
@@ -130,11 +130,11 @@ const PracticeQuestion = () => {
                         className="mirror absolute inset-0 h-full w-full object-cover"
                       />
                       <style>{`.mirror { transform: scaleX(-1); }`}</style>
-                      <div className="absolute left-4 top-4 z-10 flex items-center gap-2 rounded-full bg-coral/90 px-2.5 py-1 backdrop-blur-md shadow-lg">
+                      <div className="absolute left-3 top-3 z-10 flex items-center gap-2 rounded-full bg-coral/90 px-2 py-1 backdrop-blur-md shadow-lg">
                         <div className="h-2 w-2 animate-pulse rounded-full bg-white" />
                         <span className="text-[10px] font-bold uppercase tracking-wider text-white">REC</span>
                       </div>
-                      <div className="absolute right-4 top-4 z-10 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-mono font-bold text-white backdrop-blur-md">
+                      <div className="absolute right-3 top-3 z-10 rounded-full bg-black/40 px-2 py-1 text-[10px] font-mono font-bold text-white backdrop-blur-md">
                         0:23 / 1:30
                       </div>
                     </div>
@@ -145,43 +145,43 @@ const PracticeQuestion = () => {
                         }
                         setState("playback");
                       }}
-                      className="mx-auto flex h-12 items-center justify-center gap-2 rounded-full bg-coral text-white px-8 text-sm font-bold transition hover:bg-coral-dark shadow-lg shadow-coral/30"
+                      className="mx-auto flex h-9 items-center justify-center gap-2 rounded-full bg-coral px-6 text-[13px] font-bold text-white transition hover:bg-coral-dark shadow-lg shadow-coral/30"
                     >
-                      <StopCircle className="h-5 w-5" /> Stop recording
+                      <StopCircle className="h-4 w-4" /> Stop recording
                     </button>
                   </div>
                 )}
 
                 {state === "playback" && (
-                  <div className="animate-in slide-in-from-bottom-4 flex w-full max-w-[680px] flex-1 flex-col justify-center gap-5 duration-500">
-                    <div className="relative flex aspect-video w-full cursor-pointer items-center justify-center rounded-3xl border border-charcoal/10 bg-gradient-to-br from-cream to-amber-soft shadow-sm overflow-hidden">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-coral text-white shadow-xl shadow-coral/30 transition hover:scale-110">
-                        <Play className="h-6 w-6 fill-current ml-0.5" />
+                  <div className="animate-in slide-in-from-bottom-4 flex w-full max-w-[560px] flex-1 flex-col justify-center gap-3.5 duration-500">
+                    <div className="relative flex aspect-[16/8.8] w-full cursor-pointer items-center justify-center overflow-hidden rounded-[24px] border border-charcoal/10 bg-gradient-to-br from-cream to-amber-soft shadow-sm">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-coral text-white shadow-xl shadow-coral/30 transition hover:scale-110">
+                        <Play className="ml-0.5 h-5 w-5 fill-current" />
                       </div>
-                      <div className="absolute bottom-4 left-6 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                      <div className="absolute bottom-3 left-5 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
                         Review your practice attempt
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="rounded-2xl border border-charcoal/10 bg-cream px-5 py-4">
-                        <p className="text-sm leading-6 text-charcoal-muted">
+                    <div className="space-y-3">
+                      {/* <div className="rounded-2xl border border-charcoal/10 bg-cream px-4 py-3">
+                        <p className="text-[13px] leading-5 text-charcoal-muted">
                           <span className="font-bold text-charcoal">Nice.</span> You tested your camera framing, voice level, and the same one-question flow used in the scored interview next.
                         </p>
-                      </div>
+                      </div> */}
                       <div className="flex flex-col items-center justify-center gap-3 md:flex-row">
                         <button
                           onClick={() => {
                             setState("prep");
                             setCountdown(30);
                           }}
-                          className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-charcoal/10 bg-white px-8 text-sm font-bold text-charcoal transition hover:bg-cream md:w-auto"
+                          className="flex h-10 w-full items-center justify-center gap-2 rounded-full border border-charcoal/10 bg-white px-6 text-[13px] font-bold text-charcoal transition hover:bg-cream md:w-auto"
                         >
                           <RefreshCw className="h-4 w-4" /> Re-record
                         </button>
                         <Link
                           to="/interview"
-                          className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-coral px-8 text-sm font-bold text-white shadow-xl shadow-coral/30 transition hover:bg-coral-dark md:w-auto"
+                          className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-coral px-6 text-[13px] font-bold text-white shadow-xl shadow-coral/30 transition hover:bg-coral-dark md:w-auto"
                         >
                           I&apos;m ready — start interview <ArrowRight className="h-4 w-4" />
                         </Link>

@@ -22,7 +22,7 @@ const LoginCard = () => {
   };
 
   return (
-    <div className="w-full max-w-[1500px] bg-white rounded-3xl border border-charcoal/10 p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in duration-300">
+    <div className="w-full rounded-3xl border border-charcoal/10 bg-white p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in duration-300 md:p-10">
       <div className="space-y-1.5 text-center mb-7">
         <h1 className="font-display font-bold text-2xl text-charcoal">Welcome back</h1>
         <p className="text-[13px] text-charcoal-muted">Sign in to your HireIQ workspace</p>
@@ -104,7 +104,7 @@ const Login = () => {
       <div className="absolute -top-40 -right-40 h-[400px] w-[400px] coral-glow opacity-40 pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] amber-glow opacity-30 pointer-events-none" />
       <Link to="/" className="mb-8 hover:scale-105 transition-transform relative z-10"><HireIqLogo /></Link>
-      <div className="relative z-10">
+      <div className="relative z-10 w-full max-w-[520px]">
         <LoginCard />
       </div>
     </div>

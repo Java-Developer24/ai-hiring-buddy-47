@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { HireIqLogo } from "@/components/HireIqLogo";
 import {
   ArrowRight,
@@ -12,13 +13,84 @@ import {
   Users,
   Quote,
 } from "lucide-react";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const peopleImage =
   "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80";
-const portraitImage =
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80";
+const stories = [
+  {
+    quote:
+      "The best part of working here is the combination of sharp thinking, real ownership, and a product surface that genuinely affects how people experience hiring.",
+    name: "Jordan S.",
+    role: "Platform Engineering",
+    initials: "JS",
+    accent: "from-coral/10 to-white",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+    tenure: "2.5 years",
+    team: "Platform",
+  },
+  {
+    quote:
+      "I joined to improve candidate experience, and I stayed because the team turns feedback into shipped product decisions incredibly fast.",
+    name: "Maya R.",
+    role: "Product Management",
+    initials: "MR",
+    accent: "from-amber-soft to-white",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
+    tenure: "1.8 years",
+    team: "Product",
+  },
+  {
+    quote:
+      "There is a rare amount of trust here. You can own a problem end to end, ask hard questions, and still feel deeply supported by the people around you.",
+    name: "Chris T.",
+    role: "Design Systems",
+    initials: "CT",
+    accent: "from-[#E8EDFF] to-white",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
+    tenure: "3.1 years",
+    team: "Design",
+  },
+  {
+    quote:
+      "Every launch feels meaningful because it affects both employers and candidates. That dual perspective keeps the bar high and the work interesting.",
+    name: "Anika P.",
+    role: "Customer Success",
+    initials: "AP",
+    accent: "from-coral/5 to-amber-soft/60",
+    image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
+    tenure: "2.2 years",
+    team: "Success",
+  },
+];
 
 export default function CandidateLanding() {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [activeStory, setActiveStory] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const syncSelected = () => setActiveStory(carouselApi.selectedScrollSnap());
+    syncSelected();
+    carouselApi.on("select", syncSelected);
+
+    const interval = window.setInterval(() => {
+      const nextIndex = carouselApi.selectedScrollSnap() + 1;
+      const lastIndex = carouselApi.scrollSnapList().length - 1;
+      if (nextIndex > lastIndex) {
+        carouselApi.scrollTo(0);
+        return;
+      }
+      carouselApi.scrollTo(nextIndex);
+    }, 4500);
+
+    return () => {
+      window.clearInterval(interval);
+      carouselApi.off("select", syncSelected);
+    };
+  }, [carouselApi]);
+
   return (
     <div className="min-h-screen bg-cream text-charcoal">
       {/* HEADER */}
@@ -173,19 +245,63 @@ export default function CandidateLanding() {
               <h2 className="mt-2 text-4xl font-display font-bold text-charcoal">Featured recognition</h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {[
-                { brand: "Forbes", title: "One of the World\u2019s Best Employers", year: "2025" },
-                { brand: "Forbes", title: "Best Employers for Women", year: "2025" },
-                { brand: "Ethisphere", title: "World\u2019s Most Ethical Companies", year: "2025" },
-              ].map(({ brand, title, year }) => (
-                <div key={title} className="rounded-3xl border border-charcoal/10 bg-white p-6 text-center shadow-sm hover:shadow-md transition">
-                  <div className="flex h-14 w-14 mx-auto items-center justify-center rounded-2xl bg-coral/10 text-coral mb-4">
-                    <Award className="h-6 w-6" />
+            <div className="overflow-hidden rounded-[36px] border border-charcoal/10 bg-charcoal text-white shadow-[0_24px_70px_-28px_rgba(26,39,68,0.45)]">
+              <div className="grid gap-0 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="relative overflow-hidden p-8 md:p-10">
+                  <div className="absolute -left-16 top-10 h-48 w-48 rounded-full bg-coral/20 blur-3xl" />
+                  <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-amber/15 blur-3xl" />
+                  <div className="relative">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-coral">
+                      <Award className="h-3.5 w-3.5" /> Employer recognition
+                    </div>
+                    <h3 className="mt-5 max-w-lg text-3xl font-display font-bold leading-tight md:text-4xl">
+                      Recognized for building high-trust teams and candidate-first hiring experiences.
+                    </h3>
+                    <p className="mt-4 max-w-xl text-sm leading-6 text-white/70">
+                      From ethics to inclusion to operator growth, our recognition reflects the same values candidates feel throughout the interview experience.
+                    </p>
+                    <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                      {[
+                        ["2025", "Global employer awards"],
+                        ["72", "Team NPS benchmark"],
+                        ["4", "Regional hubs supporting growth"],
+                      ].map(([value, label]) => (
+                        <div key={label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur">
+                          <p className="text-2xl font-display font-bold text-amber">{value}</p>
+                          <p className="mt-1 text-[11px] uppercase tracking-widest text-white/60">{label}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">{brand}</p>
-                  <p className="mt-3 text-lg font-display font-bold leading-snug text-charcoal min-h-[3.5rem]">{title}</p>
-                  <p className="mt-4 inline-block text-[10px] font-bold text-coral uppercase tracking-widest bg-coral/5 rounded-full px-3 py-1">{year}</p>
+                </div>
+                <div className="grid gap-px bg-white/10 lg:grid-cols-1">
+                  {[
+                    { brand: "Forbes", title: "One of the World\u2019s Best Employers", year: "2025", note: "Recognised for team culture, growth, and operator-first leadership." },
+                    { brand: "Forbes", title: "Best Employers for Women", year: "2025", note: "Celebrated for inclusive progression, support, and leadership visibility." },
+                    { brand: "Ethisphere", title: "World\u2019s Most Ethical Companies", year: "2025", note: "Honoured for transparent systems, fairness, and responsible product decisions." },
+                  ].map(({ brand, title, year, note }) => (
+                    <div key={title} className="bg-white/5 p-6 backdrop-blur transition hover:bg-white/10">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-coral">{brand}</span>
+                        <span className="rounded-full bg-coral/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-amber">{year}</span>
+                      </div>
+                      <p className="mt-4 text-xl font-display font-bold leading-snug text-white">{title}</p>
+                      <p className="mt-3 text-sm leading-6 text-white/65">{note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {[
+                ["Growth", "Career acceleration and ownership are designed into how teams operate."],
+                ["Inclusion", "Recognition is backed by visible progression, support, and fairness in practice."],
+                ["Integrity", "The same rigor we apply to hiring also guides how we build and make decisions."],
+              ].map(([title, body]) => (
+                <div key={title} className="rounded-3xl border border-charcoal/10 bg-white px-5 py-5 shadow-sm">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-coral">{title}</p>
+                  <p className="mt-3 text-sm leading-6 text-charcoal-muted">{body}</p>
                 </div>
               ))}
             </div>
@@ -203,22 +319,62 @@ export default function CandidateLanding() {
               </p>
             </div>
 
-            <div className="rounded-[32px] border border-charcoal/10 bg-cream p-6 shadow-sm md:p-10 max-w-4xl mx-auto">
-              <div className="grid gap-8 md:grid-cols-[260px_1fr] items-center">
-                <img src={portraitImage} alt="Team member portrait" className="h-[280px] w-full rounded-3xl object-cover" />
-                <div className="relative">
-                  <Quote className="absolute -top-2 -left-1 h-8 w-8 text-coral/20" />
-                  <p className="text-lg leading-7 text-charcoal pl-7">
-                    The best part of working here is the combination of sharp thinking, real ownership, and a product surface that genuinely affects how people experience hiring.
-                  </p>
-                  <div className="mt-6 flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-coral/10 flex items-center justify-center text-coral text-xs font-bold">JS</div>
-                    <div>
-                      <p className="text-xs font-bold text-charcoal">Jordan S.</p>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-coral">Platform Engineering</p>
-                    </div>
-                  </div>
-                </div>
+            <div className="mx-auto max-w-5xl rounded-[32px] border border-charcoal/10 bg-cream p-6 shadow-sm md:p-10">
+              <Carousel setApi={setCarouselApi} opts={{ loop: true }} className="w-full">
+                <CarouselContent>
+                  {stories.map((story) => (
+                    <CarouselItem key={story.name}>
+                      <div className="grid items-center gap-8 md:grid-cols-[260px_1fr]">
+                        <div className={`overflow-hidden rounded-3xl border border-charcoal/10 bg-gradient-to-br ${story.accent} p-4`}>
+                          <img src={story.image} alt={`${story.name} portrait`} className="h-[280px] w-full rounded-[24px] object-cover" />
+                          <div className="mt-4 grid grid-cols-2 gap-3">
+                            <div className="rounded-2xl bg-white/80 px-3 py-2">
+                              <p className="text-[9px] font-bold uppercase tracking-widest text-charcoal-muted">Tenure</p>
+                              <p className="mt-1 text-sm font-bold text-charcoal">{story.tenure}</p>
+                            </div>
+                            <div className="rounded-2xl bg-white/80 px-3 py-2">
+                              <p className="text-[9px] font-bold uppercase tracking-widest text-charcoal-muted">Team</p>
+                              <p className="mt-1 text-sm font-bold text-charcoal">{story.team}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <Quote className="absolute -top-2 -left-1 h-8 w-8 text-coral/20" />
+                          <p className="pl-7 text-lg leading-7 text-charcoal">
+                            {story.quote}
+                          </p>
+                          <div className="mt-6 flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-coral/10 text-coral text-xs font-bold">{story.initials}</div>
+                            <div>
+                              <p className="text-xs font-bold text-charcoal">{story.name}</p>
+                              <p className="text-[10px] font-bold uppercase tracking-widest text-coral">{story.role}</p>
+                            </div>
+                          </div>
+                          <div className="mt-6 flex flex-wrap gap-2">
+                            {["High ownership", "Flexible collaboration", "Clear candidate focus"].map((tag) => (
+                              <span key={`${story.name}-${tag}`} className="rounded-full border border-charcoal/10 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+              <div className="mt-6 flex justify-center gap-2">
+                {stories.map((story, index) => (
+                  <button
+                    key={story.name}
+                    type="button"
+                    onClick={() => carouselApi?.scrollTo(index)}
+                    className={`h-2.5 rounded-full transition-all ${
+                      activeStory === index ? "w-8 bg-coral" : "w-2.5 bg-charcoal/15"
+                    }`}
+                    aria-label={`Go to story ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; la
 const DeviceCheck = () => {
   const navigate = useNavigate();
   const { step } = useParams();
-  const currentStep = "assessment";
+  const currentStep = step === "video" || step === "coding" ? step : "assessment";
   const config = stepConfig[currentStep];
 
   const handleContinue = () => {
@@ -79,20 +79,20 @@ const DeviceCheck = () => {
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="max-w-[620px] w-full bg-white border border-charcoal/10 rounded-[28px] p-10 shadow-sm space-y-8 animate-in slide-in-from-bottom-4 duration-500">
           <div className="space-y-6">
-            <div className="flex items-center gap-1">
+            <div className="flex flex-wrap items-center gap-2">
               {[
                 ...config.progressLabels.map((label, index) => ({
                   label,
                   active: index === 0,
                 })),
               ].map((s, i) => (
-                <div key={s.label} className="flex items-center">
-                  <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                <div key={s.label} className="flex items-center gap-2">
+                  <div className={`flex min-h-8 min-w-[110px] items-center justify-center rounded-full px-3 py-1 text-center text-[10px] font-bold uppercase tracking-wider ${
                     s.active ? "bg-[hsl(var(--charcoal))] text-white" : "bg-charcoal/5 text-charcoal-muted"
                   }`}>
                     {s.label}
                   </div>
-                  {i < config.progressLabels.length - 1 && <div className="w-4 h-px bg-charcoal/10 mx-1" />}
+                  {i < config.progressLabels.length - 1 && <div className="hidden h-px w-4 bg-charcoal/10 md:block" />}
                 </div>
               ))}
             </div>

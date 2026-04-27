@@ -2,15 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import {
   Volume2,
-  Lightbulb,
-  Play,
   ArrowRight,
   CheckCircle2,
-  Mic,
-  Camera,
   Loader2
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+const interviewQuestions = [
+  "Describe a time you had to debug a critical production issue under pressure. What was your approach?",
+  "Tell us about a backend performance improvement you led and how you measured the impact.",
+  "Share an example of a disagreement with a teammate or stakeholder and how you worked through it.",
+];
 
 const VideoInterview = () => {
   const [state, setState] = useState<"prep" | "recording" | "uploading" | "complete">("prep");
@@ -18,6 +20,7 @@ const VideoInterview = () => {
   const [countdown, setCountdown] = useState(24);
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+  const activeQuestion = interviewQuestions[currentQuestion - 1];
 
   useEffect(() => {
     if (state === "recording" && videoRef.current) {
@@ -48,7 +51,7 @@ const VideoInterview = () => {
       }
       setState("uploading");
       setTimeout(() => {
-        if (currentQuestion < 3) { // Demo only 3 questions
+        if (currentQuestion < interviewQuestions.length) {
           setCurrentQuestion(currentQuestion + 1);
           setCountdown(24);
           setState("prep");
@@ -61,8 +64,7 @@ const VideoInterview = () => {
 
   return (
     <CandidateLayout className="bg-[#0f1117]" showLogo={true}>
-
-      <div className="flex-1 flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <div className="flex-1 flex flex-col items-center justify-center p-5 relative overflow-hidden">
         {/* Background glow effects */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] bg-coral/10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -70,7 +72,7 @@ const VideoInterview = () => {
           <div className="max-w-[600px] w-full space-y-12 text-center animate-in fade-in zoom-in-95 duration-700 relative z-10">
             <div className="space-y-6">
               <h2 className="text-2xl md:text-3xl font-display font-bold text-white leading-tight">
-                Describe a time you had to debug a critical production issue under pressure. What was your approach?
+                {activeQuestion}
               </h2>
               <button className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-xs font-bold text-white/60 hover:text-white hover:bg-white/5 transition">
                 <Volume2 className="h-4 w-4" /> Replay question
@@ -79,10 +81,10 @@ const VideoInterview = () => {
 
             <div className="space-y-8">
               <div className="flex items-center justify-center gap-4 mb-4">
-                 <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Question {currentQuestion} of 3</span>
+                 <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Question {currentQuestion} of {interviewQuestions.length}</span>
                  <div className="flex gap-1">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className={`h-1 w-4 rounded-full ${i <= currentQuestion ? 'bg-coral' : 'bg-white/10'}`} />
+                    {interviewQuestions.map((_, i) => (
+                      <div key={i} className={`h-1 w-4 rounded-full ${i + 1 <= currentQuestion ? 'bg-coral' : 'bg-white/10'}`} />
                     ))}
                  </div>
               </div>
@@ -124,14 +126,14 @@ const VideoInterview = () => {
         )}
 
         {state === "recording" && (
-          <div className="w-full max-w-4xl space-y-8 animate-in fade-in duration-500">
+          <div className="w-full max-w-[900px] space-y-6 animate-in fade-in duration-500">
              <div className="text-center space-y-2">
                 <p className="text-sm font-medium text-white/60 line-clamp-1 max-w-xl mx-auto">
-                  Describe a time you had to debug a critical production issue...
+                  {activeQuestion}
                 </p>
              </div>
 
-             <div className="aspect-video w-full bg-black rounded-[32px] border border-white/10 relative overflow-hidden shadow-2xl group">
+             <div className="aspect-[16/7.8] w-full bg-black rounded-[28px] border border-white/10 relative overflow-hidden shadow-2xl group">
                 <video
                   ref={videoRef}
                   autoPlay
@@ -140,12 +142,12 @@ const VideoInterview = () => {
                 />
                 <style>{`.mirror { transform: scaleX(-1); }`}</style>
 
-                <div className="absolute top-6 left-6 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                <div className="absolute top-4 left-4 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                   <div className="h-2 w-2 rounded-full bg-[hsl(var(--coral))] animate-pulse" />
                   <span className="text-[11px] font-bold text-white uppercase tracking-wider">Recording</span>
                 </div>
 
-                <div className="absolute top-6 right-6 flex items-center gap-4">
+                <div className="absolute top-4 right-4 flex items-center gap-4">
                   <div className="px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[11px] font-mono font-bold text-white">
                     1:24 / 1:30
                   </div>
@@ -157,10 +159,10 @@ const VideoInterview = () => {
                 </div>
              </div>
 
-             <div className="flex flex-col items-center gap-6">
+             <div className="flex flex-col items-center gap-4">
                 <button
                   onClick={handleNext}
-                  className="h-14 px-10 bg-white text-charcoal font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-cream transition shadow-xl"
+                  className="h-12 px-9 bg-white text-charcoal font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-cream transition shadow-xl"
                 >
                   Done answering
                 </button>
@@ -188,29 +190,30 @@ const VideoInterview = () => {
         )}
 
         {state === "complete" && (
-          <div className="max-w-[520px] w-full text-center space-y-10 animate-in fade-in zoom-in-95 duration-700">
-            <div className="h-24 w-24 rounded-full bg-[#2D5BFF]/10 flex items-center justify-center text-[#2D5BFF] mx-auto border border-[#2D5BFF]/20 relative">
-               <div className="absolute inset-0 bg-[#2D5BFF]/20 rounded-full blur-2xl animate-pulse" />
+          <div className="max-w-[520px] w-full text-center space-y-8 animate-in fade-in zoom-in-95 duration-700">
+            <div className="h-24 w-24 rounded-full bg-coral/10 flex items-center justify-center text-coral mx-auto border border-coral/20 relative">
+               <div className="absolute inset-0 bg-coral/20 rounded-full blur-2xl animate-pulse" />
                <CheckCircle2 className="h-12 w-12 relative z-10" />
             </div>
             <div className="space-y-3">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber">Interview complete</p>
               <h2 className="text-4xl font-display font-bold text-white tracking-tight">Interview complete</h2>
-              <p className="text-base text-white/60">Thanks, Jordan. The AI is now analysing your answers.</p>
+              <p className="text-base text-white/70">Thanks, Jordan. The AI is now analysing your answers.</p>
             </div>
 
             <div className="space-y-6 pt-4">
-              <div className="flex items-center justify-center gap-3 text-sm font-bold text-white/40">
+              <div className="flex items-center justify-center gap-3 text-sm font-bold text-amber">
                 <Loader2 className="h-4 w-4 animate-spin" /> Processing…
               </div>
 
-              <div className="p-6 rounded-[24px] bg-white/5 border border-white/5 backdrop-blur-sm space-y-6">
+              <div className="space-y-6 rounded-[24px] border border-coral/20 bg-gradient-to-br from-coral/10 via-white/5 to-amber/10 p-6 backdrop-blur-sm">
                 <div className="space-y-1.5">
-                  <p className="text-xs font-bold text-white/80 uppercase tracking-widest">Submission complete</p>
+                  <p className="text-xs font-bold text-amber uppercase tracking-widest">Submission complete</p>
                   <p className="text-base font-semibold text-white">Your interview answers are submitted.</p>
                 </div>
                 <button
                   onClick={() => navigate("/assessment-coding")}
-                  className="h-14 w-full bg-[#2D5BFF] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#2D5BFF]/80 transition shadow-xl shadow-[#2D5BFF]/20"
+                  className="h-14 w-full bg-coral text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-coral-dark transition shadow-xl shadow-coral/20"
                 >
                   Continue with Machine coding round <ArrowRight className="h-4 w-4" />
                 </button>

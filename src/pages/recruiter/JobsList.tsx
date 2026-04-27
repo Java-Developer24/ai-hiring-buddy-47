@@ -34,7 +34,7 @@ const StatusBadge = ({ status, pending }: { status: string; pending?: number }) 
 };
 
 const JobCard = ({ job }: { job: any }) => (
-  <Link to={`/jobs/${job.id}`} className={`block bg-white border border-charcoal/10 rounded-2xl p-5 hover:shadow-sm transition group ${job.status === "Paused" ? "opacity-75" : ""}`}>
+  <Link to={`/jobs/${job.id}/pipeline`} className={`block bg-white border border-charcoal/10 rounded-2xl p-5 hover:shadow-sm transition group ${job.status === "Paused" ? "opacity-75" : ""}`}>
     <div className="flex justify-between items-start mb-4">
       <div>
         <div className="flex items-center gap-2">

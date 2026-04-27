@@ -17,6 +17,33 @@ import { Link, useNavigate } from "react-router-dom";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 
+const jdTemplates = [
+  {
+    id: "backend",
+    name: "Backend Engineer",
+    summary: "Platform APIs, data flows, reliability, and cloud systems.",
+    notes: "Great for mid to senior backend hiring with architecture and ownership signals.",
+    content:
+      "Senior Backend Engineer\n\nResponsibilities:\n- Design and scale backend services and internal APIs.\n- Build reliable data pipelines and integrations across product systems.\n- Partner with product, AI, and platform teams to ship secure releases.\n\nRequirements:\n- 4+ years building backend systems in Python.\n- Strong experience with FastAPI or similar frameworks.\n- Production knowledge of PostgreSQL, Docker, and cloud infrastructure.\n- Experience designing resilient distributed systems and observability workflows.",
+  },
+  {
+    id: "product",
+    name: "Product Manager",
+    summary: "Discovery, prioritisation, roadmap ownership, and cross-functional delivery.",
+    notes: "Useful for customer-facing product roles that need execution plus strategy.",
+    content:
+      "Product Manager\n\nResponsibilities:\n- Own roadmap planning across candidate and recruiter experiences.\n- Translate customer insights into clear product bets and measurable outcomes.\n- Coordinate design, engineering, and GTM teams through release cycles.\n\nRequirements:\n- 3+ years in SaaS product management.\n- Strong writing, stakeholder management, and experimentation skills.\n- Ability to work with analytics, user research, and execution tradeoffs.",
+  },
+  {
+    id: "sales",
+    name: "Sales Executive",
+    summary: "Outbound pipeline generation, qualification, demos, and CRM discipline.",
+    notes: "A ready-made starting point for volume hiring in sales or business development.",
+    content:
+      "Sales Executive\n\nResponsibilities:\n- Build outbound pipeline across target accounts and inbound follow-up.\n- Qualify prospects, run discovery, and coordinate product demos.\n- Maintain accurate CRM hygiene and weekly pipeline updates.\n\nRequirements:\n- 2+ years in SaaS sales or business development.\n- Strong communication, objection handling, and follow-through.\n- Comfortable with targets, multi-touch outreach, and consultative selling.",
+  },
+];
+
 const Stepper = ({ currentStep }: { currentStep: number }) => {
   const steps = ["Role details", "Job description", "Configure"];
   return (
@@ -56,7 +83,18 @@ const CreateJobWizard = () => {
   const [mcqQuestions, setMcqQuestions] = useState(8);
   const [videoQuestions, setVideoQuestions] = useState(6);
   const [codingQuestions, setCodingQuestions] = useState(1);
+  // const [selectedTemplate, setSelectedTemplate] = useState(jdTemplates[0].id);
+  // const [jdText, setJdText] = useState(jdTemplates[0].content);
   const navigate = useNavigate();
+
+  // const applyTemplate = (templateId: string) => {
+  //   setSelectedTemplate(templateId);
+  //   const template = jdTemplates.find((item) => item.id === templateId);
+  //   if (template) {
+  //     setJdText(template.content);
+  //     setAnalyzed(false);
+  //   }
+  // };
 
   const handleAnalyse = () => {
     setAnalyzing(true);
@@ -270,6 +308,31 @@ const CreateJobWizard = () => {
 
                 <div className="flex gap-8">
                   <div className="w-[45%] space-y-6">
+                    {/* <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-white p-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Select template</label>
+                          <p className="mt-1 text-xs leading-5 text-charcoal-muted">Start from a ready-made JD and tweak it before running AI analysis.</p>
+                        </div>
+                        <Sparkles className="h-4 w-4 shrink-0 text-coral" />
+                      </div>
+                      <select
+                        value={selectedTemplate}
+                        onChange={(e) => applyTemplate(e.target.value)}
+                        className="h-10 w-full rounded-xl border border-charcoal/10 bg-cream/20 px-3 text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-coral/20"
+                      >
+                        {jdTemplates.map((template) => (
+                          <option key={template.id} value={template.id}>
+                            {template.name}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="rounded-xl bg-cream/40 p-3">
+                        <p className="text-[11px] font-bold text-charcoal">{jdTemplates.find((template) => template.id === selectedTemplate)?.summary}</p>
+                        <p className="mt-1 text-[11px] leading-5 text-charcoal-muted">{jdTemplates.find((template) => template.id === selectedTemplate)?.notes}</p>
+                      </div>
+                    </div> */}
+
                     <div>
                       <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block mb-3">Upload or paste JD</label>
                       <div className="border-2 border-dashed border-charcoal/10 rounded-2xl p-6 bg-cream/20 flex flex-col items-center justify-center gap-2 hover:bg-cream/40 transition cursor-pointer group">
@@ -293,16 +356,17 @@ const CreateJobWizard = () => {
 
                     <textarea
                       placeholder="Paste your job description text here…"
+                      
                       className="w-full h-40 p-4 rounded-xl border border-charcoal/10 bg-cream/10 text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition resize-none"
-                    ></textarea>
+                    />
 
-                    <div className="space-y-3">
+                    {/* <div className="space-y-3">
                       <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Hiring notes for AI</label>
                       <textarea
                         placeholder="Add anything the AI should prioritize, avoid, or probe for in candidates..."
                         className="w-full h-28 p-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition resize-none"
                       />
-                    </div>
+                    </div> */}
 
                     <button onClick={handleAnalyse} className="w-full h-11 bg-charcoal text-cream font-bold rounded-xl hover:bg-coral transition">
                       Analyse JD
@@ -450,6 +514,26 @@ const CreateJobWizard = () => {
                         Total: 100% <Check className="h-3 w-3" />
                       </div>
                     </div>
+                    <div className="rounded-xl border border-charcoal/10 bg-white p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">Screening focus</span>
+                        <span className="rounded-full bg-[#E8EDFF] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#2D5BFF]">Backend preset</span>
+                      </div>
+                      <div className="grid gap-2 text-[11px] text-charcoal-muted">
+                        <div className="flex items-center justify-between rounded-lg bg-cream/40 px-3 py-2">
+                          <span>Prioritise production API ownership</span>
+                          <span className="font-bold text-charcoal">High</span>
+                        </div>
+                        <div className="flex items-center justify-between rounded-lg bg-cream/40 px-3 py-2">
+                          <span>Penalise missing cloud deployment exposure</span>
+                          <span className="font-bold text-charcoal">Medium</span>
+                        </div>
+                        <div className="flex items-center justify-between rounded-lg bg-cream/40 px-3 py-2">
+                          <span>Allow adjacent stack experience</span>
+                          <span className="font-bold text-charcoal">Yes</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-4 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
@@ -499,6 +583,14 @@ const CreateJobWizard = () => {
                           <div className="h-1.5 w-full bg-cream rounded-full overflow-hidden">
                             <div className="h-full bg-destructive/60 rounded-full w-[30%]" />
                           </div>
+                        </div>
+                      </div>
+                      <div className="rounded-xl border border-charcoal/10 bg-white p-4 space-y-3">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted block">Decision guardrails</span>
+                        <div className="space-y-2 text-[11px] leading-5 text-charcoal-muted">
+                          <div className="rounded-lg bg-[#FFE5E5] px-3 py-2 text-[#B94141]">Below 40: missing must-have skills or repeated red flags trigger auto-reject.</div>
+                          <div className="rounded-lg bg-[#FFF4E5] px-3 py-2 text-[#B56A1F]">40 to 75: AI flags uncertain profiles for recruiter review with rationale.</div>
+                          <div className="rounded-lg bg-[#E5F9F1] px-3 py-2 text-[#11805A]">75+: strong skill fit, consistent experience, and no major warning signals.</div>
                         </div>
                       </div>
                     </div>

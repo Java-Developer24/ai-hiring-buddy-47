@@ -11,7 +11,7 @@ const Metric = ({ label, value, tone }: { label: string; value: string; tone?: "
 );
 
 const StatusPill = ({ s }: { s: "Active" | "Paused" }) => (
-  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${s === "Active" ? "bg-amber/20 text-coral" : "bg-charcoal/10 text-charcoal-muted"}`}>
+  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${s === "Active" ? "bg-amber/20 text-coral" : "bg-charcoal/10 text-charcoal-muted"}`}>
     <span className={`h-1.5 w-1.5 rounded-full ${s === "Active" ? "bg-amber" : "bg-charcoal-muted"}`} />
     {s}
   </span>
@@ -29,7 +29,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   return (
     <RecruiterLayout title="Dashboard">
-      <div className="p-8 space-y-6">
+      <div className="p-6 space-y-6">
         <div>
           <h1 className="font-display font-bold text-2xl text-charcoal">Good morning, Alex</h1>
           <p className="text-sm text-charcoal-muted mt-1">Here's what the AI has been doing across your active jobs.</p>
@@ -51,40 +51,44 @@ const Dashboard = () => {
               <h3 className="font-display font-bold text-base text-charcoal">Active jobs</h3>
               <button onClick={() => navigate("/jobs")} className="text-xs text-coral font-semibold hover:underline">View all</button>
             </div>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-[11px] uppercase tracking-wider text-charcoal-muted">
-                  <th className="px-5 py-3 font-medium">Job title</th>
-                  <th className="px-3 py-3 font-medium text-center">Candidates</th>
-                  <th className="px-3 py-3 font-medium text-center">Applied</th>
-                  <th className="px-3 py-3 font-medium text-center">Video done</th>
-                  <th className="px-3 py-3 font-medium text-center">AI rejected</th>
-                  <th className="px-3 py-3 font-medium text-center">Shortlist</th>
-                  <th className="px-3 py-3 font-medium text-center">Pending</th>
-                  <th className="px-5 py-3 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recruiterJobs.map((j) => (
-                  <tr key={j.id} onClick={() => navigate(`/jobs/${j.id}`)} className="border-t border-charcoal/5 hover:bg-cream/40 cursor-pointer transition">
-                    <td className="px-5 py-4 font-medium text-charcoal">{j.title}</td>
-                    <td className="px-3 py-4 text-center text-charcoal">{j.candidates}</td>
-                    <td className="px-3 py-4 text-center text-charcoal">{j.applied}</td>
-                    <td className="px-3 py-4 text-center text-charcoal">{j.video}</td>
-                    <td className="px-3 py-4 text-center text-destructive font-semibold">{j.aiRejected}</td>
-                    <td className="px-3 py-4 text-center text-charcoal font-semibold">{j.shortlisted}</td>
-                    <td className="px-3 py-4 text-center">
-                      {j.pending > 0 ? (
-                        <span className="inline-flex items-center justify-center h-6 min-w-6 px-1.5 rounded-full bg-amber-soft text-amber-warm text-[11px] font-bold">{j.pending}</span>
-                      ) : (
-                        <span className="text-charcoal-muted">0</span>
-                      )}
-                    </td>
-                    <td className="px-5 py-4"><StatusPill s={j.status} /></td>
+            <div className="overflow-x-auto">
+              <table className="w-full table-fixed text-[12px]">
+                <thead>
+                  <tr className="text-left text-[10px] uppercase tracking-wider text-charcoal-muted">
+                    <th className="w-[26%] px-5 py-3 font-medium">Job title</th>
+                    <th className="w-[9%] px-2 py-3 font-medium text-center">Cand.</th>
+                    <th className="w-[9%] px-2 py-3 font-medium text-center">Applied</th>
+                    <th className="w-[10%] px-2 py-3 font-medium text-center">Video</th>
+                    <th className="w-[11%] px-2 py-3 font-medium text-center">AI rej.</th>
+                    <th className="w-[10%] px-2 py-3 font-medium text-center">Short.</th>
+                    <th className="w-[10%] px-2 py-3 font-medium text-center">Pending</th>
+                    <th className="w-[15%] px-3 py-3 font-medium">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {recruiterJobs.map((j) => (
+                    <tr key={j.id} onClick={() => navigate(`/jobs/${j.id}/pipeline`)} className="border-t border-charcoal/5 hover:bg-cream/40 cursor-pointer transition">
+                      <td className="px-5 py-5 font-medium text-charcoal">
+                        <div className="leading-snug">{j.title}</div>
+                      </td>
+                      <td className="px-2 py-5 text-center text-charcoal">{j.candidates}</td>
+                      <td className="px-2 py-5 text-center text-charcoal">{j.applied}</td>
+                      <td className="px-2 py-5 text-center text-charcoal">{j.video}</td>
+                      <td className="px-2 py-5 text-center text-destructive font-semibold">{j.aiRejected}</td>
+                      <td className="px-2 py-5 text-center text-charcoal font-semibold">{j.shortlisted}</td>
+                      <td className="px-2 py-5 text-center">
+                        {j.pending > 0 ? (
+                          <span className="inline-flex items-center justify-center h-5 min-w-5 px-1.5 rounded-full bg-amber-soft text-amber-warm text-[10px] font-bold">{j.pending}</span>
+                        ) : (
+                          <span className="text-charcoal-muted text-[12px]">0</span>
+                        )}
+                      </td>
+                      <td className="px-3 py-5"><StatusPill s={j.status} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* Activity feed */}

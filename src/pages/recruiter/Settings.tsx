@@ -1,8 +1,5 @@
 import { RecruiterLayout } from "@/components/layout/RecruiterLayout";
 import {
-  Upload,
-  ExternalLink,
-  Check,
   Globe,
   Mail,
   Users,
@@ -11,14 +8,11 @@ import {
   CreditCard
 } from "lucide-react";
 import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
-import { Link } from "react-router-dom";
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState("Branding");
+  const [activeTab, setActiveTab] = useState("Email templates");
 
   const tabs = [
-    { label: "Branding", icon: Globe },
     { label: "Email templates", icon: Mail },
     { label: "Team members", icon: Users },
     { label: "Scoring presets", icon: Sliders },
@@ -32,7 +26,7 @@ const Settings = () => {
         {/* Header */}
         <div>
           <h1 className="font-display font-bold text-2xl text-charcoal">Settings</h1>
-          <p className="text-sm text-charcoal-muted mt-1">Manage your organisation, branding, team, and integrations.</p>
+          <p className="text-sm text-charcoal-muted mt-1">Manage your organisation, templates, team, and integrations.</p>
         </div>
 
         {/* Tabs */}
@@ -45,7 +39,7 @@ const Settings = () => {
                 activeTab === t.label ? "text-coral" : "text-charcoal-muted hover:text-charcoal"
               }`}
             >
-              {t.label}
+              <span className="inline-flex items-center gap-2">{t.label}</span>
               {activeTab === t.label && (
                 <div className="absolute bottom-0 inset-x-0 h-0.5 bg-coral rounded-full" />
               )}
@@ -53,119 +47,7 @@ const Settings = () => {
           ))}
         </div>
 
-        {activeTab === "Branding" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in fade-in duration-500">
-            {/* Left: Form */}
-            <div className="lg:col-span-7 space-y-8">
-              <section className="space-y-6">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Organisation</h3>
-                </div>
-
-                <div className="flex items-center gap-6">
-                  <div className="h-24 w-24 border-2 border-dashed border-charcoal/10 rounded-2xl flex flex-col items-center justify-center gap-2 bg-cream/20 shrink-0">
-                    <div className="h-8 w-12 bg-coral/10 rounded flex items-center justify-center">
-                      <div className="h-4 w-6 bg-coral/20 rounded-sm" />
-                    </div>
-                    <button className="text-[10px] font-bold text-coral hover:underline">Change logo</button>
-                  </div>
-                  <div className="flex-1 space-y-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Company name</label>
-                      <input type="text" defaultValue=" HireIQ Partner Solutions" className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none transition" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Tagline</label>
-                      <input type="text" defaultValue="AI-powered hiring at scale" className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none transition" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Brand colour</label>
-                  <div className="flex items-center gap-3">
-                    <div className="h-11 w-11 rounded-xl bg-coral shrink-0 border border-charcoal/10" />
-                    <input type="text" defaultValue="#1a2744" className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm font-mono focus:outline-none transition uppercase" />
-                  </div>
-                </div>
-              </section>
-
-              <section className="space-y-6 pt-6 border-t border-charcoal/5">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Candidate portal</h3>
-                </div>
-
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <p className="text-sm font-bold text-charcoal">Show company tagline</p>
-                      <p className="text-xs text-charcoal-muted">Display your tagline on the application landing page.</p>
-                    </div>
-                    <Switch defaultChecked />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <p className="text-sm font-bold text-charcoal">Show salary range</p>
-                      <p className="text-xs text-charcoal-muted">Make the salary range visible to candidates.</p>
-                    </div>
-                    <Switch />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <p className="text-sm font-bold text-charcoal">Allow cover note</p>
-                      <p className="text-xs text-charcoal-muted">Let candidates add an optional cover message.</p>
-                    </div>
-                    <Switch defaultChecked />
-                  </div>
-                </div>
-              </section>
-
-              <button className="h-12 px-8 bg-coral text-cream font-bold rounded-xl hover:bg-charcoal transition shadow-lg shadow-coral/10">
-                Save branding
-              </button>
-            </div>
-
-            {/* Right: Preview */}
-            <div className="lg:col-span-5">
-              <div className="sticky top-24 space-y-4">
-                <div className="flex items-center justify-between">
-                  <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Preview — how candidates see you</label>
-                  <Link to="/apply/demo" target="_blank" className="text-[10px] font-bold text-coral hover:underline flex items-center gap-1">
-                    Open in new tab <ExternalLink className="h-2.5 w-2.5" />
-                  </Link>
-                </div>
-
-                <div className="rounded-[24px] border border-charcoal/10 bg-[#F5F7FA] p-6 h-[500px] shadow-inner overflow-hidden relative group">
-                  <div className="bg-white rounded-xl shadow-2xl h-full flex flex-col overflow-hidden scale-90 group-hover:scale-95 transition duration-500">
-                    <div className="h-10 bg-[#0D1829] px-4 flex items-center shrink-0">
-                      <div className="h-4 w-6 bg-white/20 rounded flex items-center justify-center">
-                        <div className="h-2 w-3 bg-white/40 rounded-[1px]" />
-                      </div>
-                    </div>
-                    <div className="p-6 space-y-4">
-                      <div className="space-y-2">
-                        <div className="h-6 bg-charcoal/10 rounded-md w-3/4" />
-                        <div className="flex gap-2">
-                          <div className="h-4 bg-charcoal/5 rounded-full w-16" />
-                          <div className="h-4 bg-coral/10 rounded-full w-12" />
-                        </div>
-                      </div>
-                      <div className="h-24 bg-cream/30 rounded-xl" />
-                      <div className="space-y-3 pt-4">
-                        <div className="h-9 bg-cream rounded-lg border border-charcoal/5" />
-                        <div className="h-9 bg-cream rounded-lg border border-charcoal/5" />
-                        <div className="h-20 bg-cream rounded-lg border border-charcoal/5" />
-                        <div className="h-10 bg-coral rounded-lg" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#F5F7FA] via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
+       
         {activeTab === "Email templates" && (
           <div className="space-y-6 animate-in fade-in duration-500">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
