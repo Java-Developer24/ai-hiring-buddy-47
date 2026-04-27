@@ -55,6 +55,7 @@ All colors MUST be HSL.
 
     --cream: 26.7 69.2% 97.5%;               /* #FDF8F4 */
     --white: 300.0 100.0% 99.6%;             /* #FFFDFF */
+    --cream-warm: 32 60% 94%;                /* Slightly deeper paper #F5EDE2 */
 
     --success: 123.0 46.2% 33.5%;            /* #2E7D32 */
 
@@ -149,7 +150,6 @@ All colors MUST be HSL.
     background: radial-gradient(ellipse at center, hsl(var(--lime) / 0.45), hsl(var(--lime) / 0.1) 40%, transparent 70%);
   }
   .bg-cream-warm { background-color: hsl(var(--cream-warm)); }
-  .bg-forest-soft { background-color: hsl(var(--forest-soft)); }
   .bg-amber-warm { background-color: hsl(var(--amber)); }
   .bg-amber-soft { background-color: hsl(var(--amber-soft)); }
   .text-amber-warm { color: hsl(var(--amber)); }
