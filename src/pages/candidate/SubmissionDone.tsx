@@ -23,7 +23,7 @@ const SubmissionDone = () => {
       body: `Your application for ${job.title} has been submitted successfully.`,
       completedLabel: "Application form completed",
       nextLine: "You will now continue directly into the assessment flow.",
-      doneHref: "/device-check/assessment",
+      doneHref: "/candidate/mailbox",
     },
     assessment: {
       heading: "Assessment submitted",

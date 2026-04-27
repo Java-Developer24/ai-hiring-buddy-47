@@ -12,7 +12,14 @@ export const Navbar = () => {
           <a href="#pricing" className="hover:text-charcoal transition-colors">Pricing</a>
           <a href="#companies" className="hover:text-charcoal transition-colors">For companies</a>
         </nav>
+        
         <div className="flex items-center gap-2">
+          <Link
+            to="/candidate"
+            className="hidden sm:inline-flex items-center px-4 h-9 rounded-full text-lg font-medium text-charcoal border border-charcoal/15 hover:bg-charcoal/5 transition"
+          >
+            Candidate Portal
+          </Link>
           <Link
             to="/login"
             className="hidden sm:inline-flex items-center px-4 h-9 rounded-full text-lg font-medium text-charcoal border border-charcoal/15 hover:bg-charcoal/5 transition"
