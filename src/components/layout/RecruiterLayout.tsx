@@ -38,7 +38,7 @@ export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { 
   return (
     <div className="min-h-screen flex bg-cream">
       {/* Sidebar */}
-      <aside className="w-52 bg-charcoal flex flex-col px-3 py-4 gap-0.5 fixed inset-y-0 left-0 z-50">
+      <aside className="w-54 bg-charcoal flex flex-col px-3 py-4 gap-0.5 fixed inset-y-0 left-0 z-50">
         <Link to="/dashboard" className="mb-4 px-2 flex items-center gap-2">
           <div className="h-8 w-8 rounded-lg bg-coral flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-amber/30 rounded-full blur-md" />

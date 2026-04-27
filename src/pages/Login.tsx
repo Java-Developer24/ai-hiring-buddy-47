@@ -22,7 +22,7 @@ const LoginCard = () => {
   };
 
   return (
-    <div className="w-full max-w-[400px] bg-white rounded-3xl border border-charcoal/10 p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in duration-300">
+    <div className="w-full max-w-[1500px] bg-white rounded-3xl border border-charcoal/10 p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in duration-300">
       <div className="space-y-1.5 text-center mb-7">
         <h1 className="font-display font-bold text-2xl text-charcoal">Welcome back</h1>
         <p className="text-[13px] text-charcoal-muted">Sign in to your HireIQ workspace</p>
@@ -79,10 +79,10 @@ const LoginCard = () => {
             <span className="text-charcoal-muted">Recruiter:</span>
             <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">recruiter@hireiq.com</code>
           </div>
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
             <span className="text-charcoal-muted">Candidate:</span>
             <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">candidate@hireiq.com</code>
-          </div>
+          </div> */}
           <div className="flex justify-between items-center pt-1.5 mt-1 border-t border-amber/20">
             <span className="text-charcoal-muted">Password:</span>
             <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">hireiq123</code>
@@ -90,10 +90,10 @@ const LoginCard = () => {
         </div>
       </div>
 
-      <div className="mt-6 text-center text-xs text-charcoal-muted">
+      {/* <div className="mt-6 text-center text-xs text-charcoal-muted">
         New to HireIQ?{" "}
         <Link to="/onboarding" className="text-coral font-bold hover:underline">Create organisation account</Link>
-      </div>
+      </div> */}
     </div>
   );
 };

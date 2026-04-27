@@ -106,11 +106,11 @@ const VideoInterview = () => {
               <p className="text-xs font-bold text-white/40 uppercase tracking-widest">to prepare</p>
             </div>
 
-            <div className="max-w-[400px] mx-auto p-4 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md space-y-2">
+            {/* <div className="max-w-[400px] mx-auto p-4 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md space-y-2">
               <p className="text-[11px] font-bold text-white/80 flex items-center justify-center gap-2">
                 <Lightbulb className="h-3.5 w-3.5 text-amber" /> STAR method: Situation → Task → Action → Result
               </p>
-            </div>
+            </div> */}
 
             <button
               onClick={() => setState("recording")}
@@ -119,7 +119,7 @@ const VideoInterview = () => {
               Start recording now
             </button>
 
-            <p className="text-[10px] text-white/20 italic">Recording will start automatically when the timer ends.</p>
+            {/* <p className="text-[10px] text-white/20 italic">Recording will start automatically when the timer ends.</p> */}
           </div>
         )}
 
@@ -164,7 +164,7 @@ const VideoInterview = () => {
                 >
                   Done answering
                 </button>
-                <p className="text-[11px] text-white/40 font-medium">Speak clearly and naturally. The AI will analyse your full answer.</p>
+                {/* <p className="text-[11px] text-white/40 font-medium">Speak clearly and naturally. The AI will analyse your full answer.</p> */}
              </div>
           </div>
         )}
@@ -206,13 +206,13 @@ const VideoInterview = () => {
               <div className="p-6 rounded-[24px] bg-white/5 border border-white/5 backdrop-blur-sm space-y-6">
                 <div className="space-y-1.5">
                   <p className="text-xs font-bold text-white/80 uppercase tracking-widest">Submission complete</p>
-                  <p className="text-base font-semibold text-white">Your interview answers are ready to submit.</p>
+                  <p className="text-base font-semibold text-white">Your interview answers are submitted.</p>
                 </div>
                 <button
                   onClick={() => navigate("/assessment-coding")}
                   className="h-14 w-full bg-[#2D5BFF] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#2D5BFF]/80 transition shadow-xl shadow-[#2D5BFF]/20"
                 >
-                  Finish and continue with Machine coding round <ArrowRight className="h-4 w-4" />
+                  Continue with Machine coding round <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             </div>

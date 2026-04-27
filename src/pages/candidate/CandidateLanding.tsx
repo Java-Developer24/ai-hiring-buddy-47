@@ -48,16 +48,16 @@ export default function CandidateLanding() {
           <div className="absolute -top-40 -right-40 h-[500px] w-[500px] coral-glow opacity-25 pointer-events-none" />
           <div className="absolute -bottom-20 -left-40 h-[400px] w-[400px] amber-glow opacity-20 pointer-events-none" />
 
-          <div className="relative mx-auto max-w-6xl px-6 pt-12 pb-20">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-coral/80">Home / Careers</div>
+          <div className="relative mx-auto max-w-6xl px-6  pb-20">
+            {/* <div className="text-[10px] font-bold uppercase tracking-widest text-coral/80">Home / Careers</div> */}
 
             <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] items-start">
               {/* Left */}
               <div className="space-y-7">
-                <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">
+                {/* <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">
                   <Sparkles className="h-3.5 w-3.5 text-coral" />
                   Careers at HireIQ
-                </div>
+                </div> */}
 
                 <h1 className="max-w-3xl text-5xl font-display font-bold leading-[1.02] text-charcoal md:text-[5rem]">
                   Hello change-makers, we&rsquo;ve been expecting you.
@@ -82,22 +82,11 @@ export default function CandidateLanding() {
                   </a>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3 pt-4">
-                  {[
-                    ["Candidate journey", "Application, assessment, interview, and tracking in one flow"],
-                    ["Team style", "Small high-ownership teams with strong product craft"],
-                    ["How we work", "Structured hiring, thoughtful feedback, global candidate reach"],
-                  ].map(([title, body]) => (
-                    <div key={title} className="rounded-2xl border border-charcoal/10 bg-white p-4 shadow-sm">
-                      <p className="text-[9px] font-bold uppercase tracking-widest text-coral">{title}</p>
-                      <p className="mt-2 text-xs leading-5 text-charcoal/80">{body}</p>
-                    </div>
-                  ))}
-                </div>
+               
               </div>
 
               {/* Right */}
-              <div className="space-y-3 lg:pt-12">
+              <div className="space-y-3 ">
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     ["Job Search", "Find roles that match your craft"],
@@ -123,6 +112,18 @@ export default function CandidateLanding() {
                     View role <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
+                <div className="grid gap-3 sm:grid-cols-3 pt-4">
+                  {[
+                    ["Candidate journey", "Application, assessment, interview, and tracking in one flow"],
+                    ["Team style", "Small high-ownership teams with strong product craft"],
+                    ["How we work", "Structured hiring, thoughtful feedback, global candidate reach"],
+                  ].map(([title, body]) => (
+                    <div key={title} className="rounded-2xl border border-charcoal/10 bg-white p-4 shadow-sm">
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-coral">{title}</p>
+                      <p className="mt-2 text-xs leading-5 text-charcoal/80">{body}</p>
+                    </div>
+                  ))}
+                </div> 
               </div>
             </div>
           </div>
