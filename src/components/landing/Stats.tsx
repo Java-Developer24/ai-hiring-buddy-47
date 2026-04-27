@@ -6,14 +6,15 @@ const stats = [
 ];
 
 export const Stats = () => (
-  <section className="py-20">
+  <section className="py-20 bg-cream">
     <div className="container max-w-6xl">
-      <div className="rounded-3xl bg-coral text-cream p-10 grid grid-cols-2 lg:grid-cols-4 gap-8 relative overflow-hidden border border-coral">
-        <div className="absolute inset-0 grid-bg opacity-20" />
+      <div className="rounded-3xl bg-charcoal text-white p-10 lg:p-12 grid grid-cols-2 lg:grid-cols-4 gap-8 relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg opacity-10" />
+        <div className="absolute -top-20 -right-20 h-72 w-72 coral-glow opacity-25 pointer-events-none" />
         {stats.map((s) => (
           <div key={s.l} className="relative">
-            <div className="font-display font-bold text-4xl lg:text-5xl text-amber">{s.v}</div>
-            <div className="mt-2 text-lg text-cream/70 max-w-[180px]">{s.l}</div>
+            <div className="font-display font-bold text-4xl lg:text-5xl text-coral">{s.v}</div>
+            <div className="mt-2 text-sm text-white/70 max-w-[180px] leading-relaxed">{s.l}</div>
           </div>
         ))}
       </div>
