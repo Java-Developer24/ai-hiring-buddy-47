@@ -15,7 +15,7 @@ const LoginCard = () => {
     if (email === "recruiter@hireiq.com" && password === "hireiq123") {
       navigate("/dashboard");
     } else if (email === "candidate@hireiq.com" && password === "hireiq123") {
-      navigate("/candidate/login");
+      window.location.href = "http://localhost:8081/candidate/login";
     } else {
       setError("Invalid email or password");
     }
@@ -105,10 +105,12 @@ const LoginCard = () => {
               recruiter@hireiq.com
             </code>
           </div>
-          {/* <div className="flex justify-between items-center">
-             <span className="text-charcoal-muted">Candidate:</span>
-             <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">candidate@hireiq.com</code>
-            </div> */}
+          <div className="flex justify-between items-center">
+            <span className="text-charcoal-muted">Candidate:</span>
+            <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">
+              candidate@hireiq.com
+            </code>
+          </div>
           <div className="flex justify-between items-center pt-1.5 mt-1 border-t border-amber/20">
             <span className="text-charcoal-muted">Password:</span>
             <code className="bg-white px-1.5 py-0.5 rounded text-charcoal text-[10px]">

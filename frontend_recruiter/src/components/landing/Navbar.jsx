@@ -27,12 +27,12 @@ export const Navbar = () => {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/candidate"
+          <a
+            href="http://localhost:8081"
             className="hidden sm:inline-flex items-center px-4 h-9 rounded-full text-lg font-medium text-charcoal border border-charcoal/15 hover:bg-charcoal/5 transition"
           >
             Candidate Portal
-          </Link>
+          </a>
           <Link
             to="/login"
             className="hidden sm:inline-flex items-center px-4 h-9 rounded-full text-lg font-medium text-charcoal border border-charcoal/15 hover:bg-charcoal/5 transition"
