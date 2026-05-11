@@ -136,40 +136,64 @@ export default function CandidateLanding() {
       <main>
         {/* HERO */}
         <section className="relative overflow-hidden">
-          <div className="absolute -top-40 -right-40 h-[500px] w-[500px] coral-glow opacity-25 pointer-events-none" />
-          <div className="absolute -bottom-20 -left-40 h-[400px] w-[400px] amber-glow opacity-20 pointer-events-none" />
+          {/* Ambient glows */}
+          <div className="absolute -top-40 -right-40 h-[560px] w-[560px] coral-glow opacity-30 pointer-events-none" />
+          <div className="absolute top-40 -left-48 h-[460px] w-[460px] amber-glow opacity-25 pointer-events-none" />
+          {/* Subtle grid */}
+          <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
 
-          <div className={`${sectionContainerClass} relative pb-20`}>
-            {/* <div className="text-[10px] font-bold uppercase tracking-widest text-coral/80">Home / Careers</div> */}
-
-            <div className="mt-10 grid items-start gap-10 xl:grid-cols-[1.2fr_0.8fr]">
+          <div className={`${sectionContainerClass} relative pt-10 pb-20`}>
+            <div className="grid items-stretch gap-10 xl:grid-cols-[1fr_1.05fr]">
               {/* Left */}
-              <div className="space-y-7">
-                {/* <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">
-                   <Sparkles className="h-3.5 w-3.5 text-coral" />
-                   Careers at HireIQ
-                  </div> */}
+              <div className="space-y-2 relative">
+                {/* Trust pill */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white/80 backdrop-blur px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-coral animate-pulse-dot" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-coral" />
+                  </span>
+                  <span>Now hiring · 24 open roles</span>
+                  <span className="h-3 w-px bg-charcoal/15" />
+                  <span className="text-coral">Apply in 3 mins</span>
+                </div>
 
-                <h1 className="max-w-3xl text-5xl font-display font-bold leading-[1.02] text-charcoal md:text-[5rem]">
-                  Hello change-makers, we&rsquo;ve been expecting you.
+                <h1 className="max-w-3xl text-5xl font-display font-bold leading-[1.02] text-charcoal md:text-[5.25rem]">
+                  Hello change-makers,{" "}
+                  <span className="relative inline-block">
+                    <span className="relative z-10 italic bg-gradient-to-r from-coral via-coral to-amber bg-clip-text text-transparent">
+                      we&rsquo;ve been expecting you.
+                    </span>
+                    <svg
+                      className="absolute -bottom-2 left-0 w-full h-3 text-amber/60"
+                      viewBox="0 0 300 12"
+                      preserveAspectRatio="none"
+                      fill="none"
+                    >
+                      <path
+                        d="M2 9 Q 75 1, 150 6 T 298 5"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
                 </h1>
 
                 <p className="max-w-xl text-base leading-7 text-charcoal-muted">
                   Build products that make hiring clearer, faster, and more
                   human. At HireIQ, we bring together structured assessments,
-                  AI-assisted interviews, and candidate-first workflows so
-                  ambitious teams can hire with confidence. We are looking for
-                  people who care about thoughtful systems, strong product
-                  craft, and the kind of execution that improves the experience
-                  for every candidate and hiring team we serve.
+                  AI-assisted interviews, and candidate-first workflows — so
+                  ambitious teams can hire with confidence and you can do the
+                  best work of your career.
                 </p>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <Link
                     to="/candidate/login"
-                    className="h-12 px-6 rounded-full bg-coral text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-coral-dark transition shadow-lg shadow-coral/20"
+                    className="group h-12 px-6 rounded-full bg-coral text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-coral-dark transition shadow-lg shadow-coral/30"
                   >
-                    Explore opportunities <ArrowRight className="h-4 w-4" />
+                    Explore opportunities
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <a
                     href="#roles"
@@ -177,20 +201,184 @@ export default function CandidateLanding() {
                   >
                     View open roles
                   </a>
+
+                  <div className="flex items-center gap-3 pl-2">
+                    <div className="flex -space-x-2">
+                      {["JS", "MR", "CT", "AP"].map((i, idx) => (
+                        <div
+                          key={i}
+                          className={`h-8 w-8 rounded-full border-2 border-cream flex items-center justify-center text-[10px] font-bold text-white ${
+                            idx % 2 === 0 ? "bg-coral" : "bg-charcoal"
+                          }`}
+                        >
+                          {i}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-[11px] leading-tight text-charcoal-muted">
+                      <p className="font-bold text-charcoal">12,400+</p>
+                      <p>candidates joined this month</p>
+                    </div>
+                  </div>
                 </div>
+
+                
               </div>
 
-              {/* Right */}
-              <div className="space-y-3 ">
-                <div className="grid grid-cols-3 gap-3">
+              {/* Right — Featured role mock card stack */}
+              <div className="relative">
+                {/* Floating activity card */}
+                <div
+                  className="hidden md:flex absolute -top-6 -left-6 z-20 items-center gap-2.5 rounded-full border border-charcoal/10 bg-white pl-1.5 pr-4 py-1.5 shadow-md animate-float-slow"
+                  style={{ animationDelay: "0.4s" }}
+                >
+                  <div className="h-7 w-7 rounded-full bg-amber-soft flex items-center justify-center">
+                    <BadgeCheck className="h-4 w-4 text-coral" />
+                  </div>
+                  <div className="text-[10px] leading-tight">
+                    <p className="font-bold text-charcoal">Maya R. · hired</p>
+                    <p className="text-charcoal-muted">2 hours ago</p>
+                  </div>
+                </div>
+
+                {/* Floating mini stat */}
+                <div
+                  className="hidden md:flex absolute -right-4 top-24 z-20 flex-col rounded-2xl border border-charcoal/10 bg-charcoal text-white px-4 py-3 shadow-lg animate-float-slow"
+                  style={{ animationDelay: "1.6s" }}
+                >
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-amber">
+                    Live
+                  </span>
+                  <span className="mt-1 text-lg font-display font-bold">
+                    342 hiring
+                  </span>
+                  <span className="text-[10px] text-white/60">
+                    teams this week
+                  </span>
+                </div>
+
+                {/* Main card */}
+                <div className="relative rounded-[32px] border border-charcoal/10 bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(22,25,22,0.25)]">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-widest text-coral">
+                        Featured role
+                      </p>
+                      <h2 className="mt-2 text-3xl md:text-[34px] font-display font-bold text-charcoal leading-[1.1]">
+                        Senior Backend Engineer
+                      </h2>
+                      <p className="mt-2 text-xs text-charcoal-muted">
+                        Platform team · Reports to VP Engineering
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-amber-soft px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-charcoal whitespace-nowrap">
+                      New
+                    </span>
+                  </div>
+
+                  <div className="mt-6 grid grid-cols-2 gap-2.5 text-xs">
+                    <div className="flex items-center gap-2 rounded-xl bg-cream px-3.5 py-2.5 text-charcoal">
+                      <Briefcase className="h-4 w-4 text-coral shrink-0" />
+                      Full-time
+                    </div>
+                    <div className="flex items-center gap-2 rounded-xl bg-cream px-3.5 py-2.5 text-charcoal">
+                      <Globe className="h-4 w-4 text-coral shrink-0" />
+                      Remote · India
+                    </div>
+                    <div className="flex items-center gap-2 rounded-xl bg-cream px-3.5 py-2.5 text-charcoal">
+                      <Award className="h-4 w-4 text-coral shrink-0" />
+                      ₹ 28–42 LPA
+                    </div>
+                    <div className="flex items-center gap-2 rounded-xl bg-cream px-3.5 py-2.5 text-charcoal">
+                      <Users className="h-4 w-4 text-coral shrink-0" />
+                      4–7 yrs exp
+                    </div>
+                    <div className="flex items-center gap-2 rounded-xl bg-cream px-3.5 py-2.5 text-charcoal col-span-2">
+                      <BadgeCheck className="h-4 w-4 text-coral shrink-0" />
+                      Skills assessment · Video interview · Coding round
+                    </div>
+                  </div>
+
+                  {/* Tech stack */}
+                  <div className="mt-5">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                      You&apos;ll work with
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      {["Go", "PostgreSQL", "Kafka", "AWS", "gRPC", "Redis"].map(
+                        (t) => (
+                          <span
+                            key={t}
+                            className="rounded-full border border-charcoal/10 bg-white px-2.5 py-1 text-[10px] font-bold text-charcoal"
+                          >
+                            {t}
+                          </span>
+                        ),
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Pipeline progress */}
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-charcoal-muted">
+                      <span>Application progress</span>
+                      <span className="text-coral">3 / 4 steps</span>
+                    </div>
+                    <div className="mt-2 flex gap-1.5">
+                      {[1, 2, 3, 4].map((s) => (
+                        <div
+                          key={s}
+                          className={`h-2 flex-1 rounded-full ${
+                            s <= 3 ? "bg-coral" : "bg-charcoal/10"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-2 flex justify-between text-[9px] uppercase tracking-widest text-charcoal-muted">
+                      <span>Apply</span>
+                      <span>Assess</span>
+                      <span>Interview</span>
+                      <span>Offer</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-charcoal/10 pt-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex -space-x-1.5">
+                        {["A", "B", "C", "D"].map((i, idx) => (
+                          <div
+                            key={i}
+                            className={`h-7 w-7 rounded-full border-2 border-white flex items-center justify-center text-[10px] font-bold text-white ${
+                              idx === 1 ? "bg-amber" : "bg-coral"
+                            }`}
+                          >
+                            {i}
+                          </div>
+                        ))}
+                      </div>
+                      <span className="text-[11px] text-charcoal-muted">
+                        128 applied · 14 in interview
+                      </span>
+                    </div>
+                    <Link
+                      to="/candidate/login"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-charcoal text-white px-4 py-2 text-[11px] font-bold uppercase tracking-widest hover:bg-coral transition"
+                    >
+                      View role <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Pathway tiles below */}
+                <div className="mt-3 grid grid-cols-3 gap-3">
                   {[
                     ["Job Search", "Find roles that match your craft"],
-                    ["Campus", "Early career pathways and growth"],
-                    ["Who We Are", "Meet the teams behind the platform"],
+                    ["Campus", "Early career pathways"],
+                    ["Who We Are", "Meet the teams"],
                   ].map(([title, text]) => (
                     <div
                       key={title}
-                      className="rounded-2xl border border-charcoal/10 bg-white p-3.5 shadow-sm hover:border-coral/40 transition cursor-pointer"
+                      className="rounded-2xl border border-charcoal/10 bg-white/80 backdrop-blur p-3.5 shadow-sm hover:border-coral/40 hover:-translate-y-0.5 transition cursor-pointer"
                     >
                       <p className="text-[11px] font-bold text-charcoal">
                         {title}
@@ -201,65 +389,10 @@ export default function CandidateLanding() {
                     </div>
                   ))}
                 </div>
-
-                <div className="rounded-3xl border border-charcoal/10 bg-white p-6 shadow-sm">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-coral">
-                    Featured role
-                  </p>
-                  <h2 className="mt-3 text-2xl font-display font-bold text-charcoal leading-tight">
-                    Senior Backend Engineer
-                  </h2>
-                  <div className="mt-5 space-y-2.5 text-xs text-charcoal-muted">
-                    <div className="flex items-center gap-2">
-                      <Briefcase className="h-3.5 w-3.5 text-coral shrink-0" />{" "}
-                      Engineering · Full-time · Remote
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Globe className="h-3.5 w-3.5 text-coral shrink-0" />{" "}
-                      Hyderabad, India
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <BadgeCheck className="h-3.5 w-3.5 text-coral shrink-0" />{" "}
-                      Skills assessment, video interview, coding round
-                    </div>
-                  </div>
-                  <Link
-                    to="/candidate/login"
-                    className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold text-coral hover:underline"
-                  >
-                    View role <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-3 pt-4">
-                  {[
-                    [
-                      "Candidate journey",
-                      "Application, assessment, interview, and tracking in one flow",
-                    ],
-                    [
-                      "Team style",
-                      "Small high-ownership teams with strong product craft",
-                    ],
-                    [
-                      "How we work",
-                      "Structured hiring, thoughtful feedback, global candidate reach",
-                    ],
-                  ].map(([title, body]) => (
-                    <div
-                      key={title}
-                      className="rounded-2xl border border-charcoal/10 bg-white p-4 shadow-sm"
-                    >
-                      <p className="text-[9px] font-bold uppercase tracking-widest text-coral">
-                        {title}
-                      </p>
-                      <p className="mt-2 text-xs leading-5 text-charcoal/80">
-                        {body}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
+
+            
           </div>
         </section>
 
@@ -551,6 +684,7 @@ export default function CandidateLanding() {
           </div>
         </section>
 
+     
         {/* ROLES */}
         <section id="roles" className="py-20 bg-cream">
           <div className={sectionContainerClass}>
@@ -591,6 +725,8 @@ export default function CandidateLanding() {
             </div>
           </div>
         </section>
+
+
 
         {/* CTA */}
         <section className="py-20 bg-charcoal text-white relative overflow-hidden">
